@@ -5,7 +5,7 @@
         <hr>
         <br/>
         {burgers}
-        <b>*Burger #{count}*</b>
+        <b>*Burger #{count}*</b><i>{name}</i>
         <br/>
         <br/>
         <ul>

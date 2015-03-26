@@ -40,6 +40,7 @@ class Order extends CI_Model {
                 $burger['sauce'][] = $sauce['type'];
             
             $burger['instructions'] = $burg->instructions;
+            $burger['name'] = $burg->name;
             $order[] = $burger;
         }
         return $order;

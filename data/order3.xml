@@ -18,6 +18,7 @@ and open the template in the editor.
         <sauce type="ketchup"/>
         <sauce type="mayo"/>
         <instructions>Smear peanut butter on the inside of each bun</instructions>
+        <name>Big Buck Bison Burly Burger</name>
     </burger>
     <burger>
         <patty type="turkey"/>
@@ -30,6 +31,7 @@ and open the template in the editor.
         <sauce type="fksauce"/>
         <sauce type="mustard"/>
         <instructions>Douse in maple syrup</instructions>
+        <name>Beautiful Breakfast Bonanza Burger</name>
     </burger>
     <special>Deliver the burgers to the porch, covering it in a fuchsia scarf.
         Ring the bell twice, then run to the other side of the street.

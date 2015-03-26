@@ -74,6 +74,11 @@ class Welcome extends Application {
             else
                 $burgers[$i]['instructions'] = "<br/>Instructions: <i>" . $burgers[$i]['instructions'] . "</i>";
             
+            if (empty($burgers[$i]['name']))
+                $burgers[$i]['name'] = "";
+            else
+                $burgers[$i]['name'] = " - \"" . $burgers[$i]['name'] . "\"";
+            
             $burgers[$i]['total'] = $this->order->getBurgerTotal($burgers[$i]);
             $total += $burgers[$i]['total'];
         }
@@ -140,4 +145,5 @@ class Welcome extends Application {
         
        return $sauceList;
     }
+    
 }
