@@ -4,7 +4,7 @@
         <br/><br/>
         <ul>
             {orders}
-            <li><a href="welcome/order/{filename}">{order}</a></li>
+            <li><a href="/welcome/order/{filename}">{order}</a></li>
             {/orders}
         </ul>
 

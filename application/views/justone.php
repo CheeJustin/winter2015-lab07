@@ -3,6 +3,7 @@
         <h3>{order} for {customer} ({order-type})</h3>
         <b>Special Instructions: <i>{special}</i></b>
         <hr>
+        <br/>
         {burgers}
         <b>*Burger #{count}*</b>
         <br/>
@@ -16,8 +17,12 @@
             <br/>
             <b>Burger total: ${total}</b>
         </ul>
+        <br/>
         {/burgers}
         <hr>
         <b>Order total: ${total}</b>
+        <br/>
+        <br/>
+        <a href="/welcome">Back</a>
     </div>
 </div>
