@@ -24,37 +24,19 @@ class Order extends CI_Model {
         foreach ($burgers as $burg)
         {
             $burger = [];
+            
             $burger['patty'] = $burg->patty["type"];
             
-            $burger['cheeses'] = [];
-            $burger['cheeses'][] = $burg->cheeses['top'];
-            $burger['cheeses'][] = $burg->cheeses['bottom'];
-            
-//            if (!empty($topCheese) && !empty($bottomCheese))
-//                $burger['cheeses'] = $topCheese . " (top), " . $bottomCheese . " (bottom)";
-//            else if (!empty($topCheese))
-//                $burger['cheeses'] = $topCheese . " (top)";
-//            else if (!empty($bottomCheese))
-//                $burger['cheeses'] = $bottomCheese . " (bottom)";
-//            else
-//                $burger['cheeses'] = "";
+            $burger['top-cheese'] = $burg->cheeses['top'];
+            $burger['bottom-cheese'] = $burg->cheeses['bottom'];
             
             $burger['topping'] = [];
             foreach ($burg->topping as $topping)
-            {
-//                $burger['topping'] .= ", " . $topping['type'];
                 $burger['topping'][] = $topping['type'];
-            }
-//            $burger['topping'] = substr($burger['topping'], 2);
             
             $burger['sauce'] = [];
             foreach ($burg->sauce as $sauce)
-            {
-//                $burger['sauce'] .= ", " . $sauce['type'];
                 $burger['sauce'][] = $sauce['type'];
-
-            }
-//            $burger['sauce'] = substr($burger['sauce'], 2);
             
             $burger['instructions'] = $burg->instructions;
             $order[] = $burger;
@@ -82,8 +64,10 @@ class Order extends CI_Model {
         $total = 0;
         $total += $this->menu->getPattyPrice($burger['patty']);
         
-        foreach ($burger['cheeses'] as $cheese)
-            $total += $this->menu->getCheesePrice($cheese);
+        if (isset($burger['top-cheese']))
+            $total += $this->menu->getCheesePrice($burger['top-cheese']);
+        if (isset($burger['bottom-cheese']))
+            $total += $this->menu->getCheesePrice($burger['bottom-cheese']);
         
         foreach ($burger['topping'] as $topping)
             $total += $this->menu->getToppingPrice($topping);

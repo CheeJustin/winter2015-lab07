@@ -9,7 +9,7 @@
         <br/>
         <ul>
             <li>Base: {patty}</li>
-            {cheeses}
+            {cheeseList}
             <li>Topping(s): {toppingList}</li>
             <li>Sauce(s): {sauceList}</li>
             {instructions}

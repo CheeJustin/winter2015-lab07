@@ -69,9 +69,10 @@ class Welcome extends Application {
 //                $burgers[$i]['cheeses'] = "";
 //            else
 //                $burgers[$i]['cheeses'] = "<li>Cheese: " . $burgers[$i]['cheeses'] . "</li>";
-            
-            $burgers[$i]['toppingList'] = $this->getTopping($burgers[$i]['topping']);
-            $burgers[$i]['sauceList'] = $this->getSauce($burgers[$i]['sauce']);
+            $burgers[$i]['patty'] = $this->getPatty($burgers[$i]['patty']);
+            $burgers[$i]['cheeseList'] = $this->getCheeseList($burgers[$i]['top-cheese'], $burgers[$i]['bottom-cheese']);
+            $burgers[$i]['toppingList'] = $this->getToppingList($burgers[$i]['topping']);
+            $burgers[$i]['sauceList'] = $this->getSauceList($burgers[$i]['sauce']);
             
             if (empty($burgers[$i]['instructions']))
                 $burgers[$i]['instructions'] = "";
@@ -88,21 +89,32 @@ class Welcome extends Application {
 	$this->render();
     }
     
-    function getSauce($sauces)
+    function getPatty($patty)
     {
-        $sauceList = "";
-        foreach($sauces as $sauce)
-            $sauceList .= ", " . $this->menu->getSauceName($sauce);
-        
-        if (empty($sauceList))
-            $sauceList = "None";
-        else
-            $sauceList = substr($sauceList, 2);
-        
-       return $sauceList;
+        $patty = $this->menu->getPattyName($patty);
+       return $patty;
     }
     
-    function getTopping($toppings)
+    function getCheeseList($topCheese, $bottomCheese)
+    {
+        $cheeseList = "<li>Cheese: ";
+        
+        $topCheese = $this->menu->getCheeseName($topCheese);
+        $bottomCheese = $this->menu->getCheeseName($bottomCheese);
+        
+        if (!empty($topCheese) && !empty($bottomCheese))
+            $cheeseList .= $topCheese . " (top), " . $bottomCheese . " (bottom)</li>";
+        else if (!empty($topCheese))
+            $cheeseList .= $topCheese . " (top)</li>";
+        else if (!empty($bottomCheese))
+            $cheeseList .= $bottomCheese . " (bottom)</li>";
+        else
+            $cheeseList = "";
+        
+       return $cheeseList;
+    }
+    
+    function getToppingList($toppings)
     {
         $toppingList = "";
         foreach($toppings as $topping)
@@ -116,7 +128,19 @@ class Welcome extends Application {
        return $toppingList;
     }
     
-    
+    function getSauceList($sauces)
+    {
+        $sauceList = "";
+        foreach($sauces as $sauce)
+            $sauceList .= ", " . $this->menu->getSauceName($sauce);
+        
+        if (empty($sauceList))
+            $sauceList = "None";
+        else
+            $sauceList = substr($sauceList, 2);
+        
+       return $sauceList;
+    }
     
     function getSpace($count)
     {

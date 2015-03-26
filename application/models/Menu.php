@@ -21,7 +21,8 @@ class Menu extends CI_Model {
         $this->xml = simplexml_load_file(DATAPATH . 'menu.xml');
 
         // build a full list of patties
-        foreach ($this->xml->patties->patty as $patty) {
+        foreach ($this->xml->patties->patty as $patty)
+        {
             $record = new stdClass();
             $record->code = (string) $patty['code'];
             $record->name = (string) $patty;
@@ -30,7 +31,8 @@ class Menu extends CI_Model {
         }
         
         // build a full list of cheese
-        foreach ($this->xml->cheeses->cheese as $cheese) {
+        foreach ($this->xml->cheeses->cheese as $cheese)
+        {
             $record = new stdClass();
             $record->code = (string) $cheese['code'];
             $record->name = (string) $cheese;
@@ -39,7 +41,8 @@ class Menu extends CI_Model {
         }
         
         // build a full list of toppings
-        foreach ($this->xml->toppings->topping as $topping) {
+        foreach ($this->xml->toppings->topping as $topping)
+        {
             $record = new stdClass();
             $record->code = (string) $topping['code'];
             $record->name = (string) $topping;
@@ -48,7 +51,8 @@ class Menu extends CI_Model {
         }
         
         // build a full list of toppings
-        foreach ($this->xml->sauces->sauce as $sauce) {
+        foreach ($this->xml->sauces->sauce as $sauce)
+        {
             $record = new stdClass();
             $record->code = (string) $sauce['code'];
             $record->name = (string) $sauce;
@@ -73,6 +77,14 @@ class Menu extends CI_Model {
         else
             return null;
     }
+    
+    function getPattyName($code)
+    {
+        if (isset($this->patties[(string) $code]))
+            return $this->patties[(string) $code]->name;
+        else
+            return null;
+    }
 
     // retrieve a cheese record, perhaps for pricing
     function getCheese($code)
@@ -87,6 +99,14 @@ class Menu extends CI_Model {
     {
         if (isset($this->cheeses[(string) $code]))
             return $this->cheeses[(string) $code]->price;
+        else
+            return null;
+    }
+    
+    function getCheeseName($code)
+    {
+        if (isset($this->cheeses[(string) $code]))
+            return $this->cheeses[(string) $code]->name;
         else
             return null;
     }
