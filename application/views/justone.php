@@ -8,7 +8,7 @@
         <br/>
         <br/>
         <ul>
-            <li>Base: {patty}</li>
+            <li>Base: {pattyBurger}</li>
             {cheeseList}
             <li>Topping(s): {toppingList}</li>
             <li>Sauce(s): {sauceList}</li>

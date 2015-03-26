@@ -59,17 +59,13 @@ class Welcome extends Application {
         $this->data['order-type'] = $orderInfo['order-type'];
         $this->data['customer'] = $orderInfo['customer'];
         $this->data['special'] = $orderInfo['special'];
+        $total = 0.00;
         
         $burgers = $this->order->getOrder($filename);
         for ($i = 0; $i < count($burgers); $i++)
         {
             $burgers[$i]['count'] = $i + 1;
-            
-//            if (empty($burgers[$i]['cheeses']))
-//                $burgers[$i]['cheeses'] = "";
-//            else
-//                $burgers[$i]['cheeses'] = "<li>Cheese: " . $burgers[$i]['cheeses'] . "</li>";
-            $burgers[$i]['patty'] = $this->getPatty($burgers[$i]['patty']);
+            $burgers[$i]['pattyBurger'] = $this->getPatty($burgers[$i]['patty']);
             $burgers[$i]['cheeseList'] = $this->getCheeseList($burgers[$i]['top-cheese'], $burgers[$i]['bottom-cheese']);
             $burgers[$i]['toppingList'] = $this->getToppingList($burgers[$i]['topping']);
             $burgers[$i]['sauceList'] = $this->getSauceList($burgers[$i]['sauce']);
@@ -80,11 +76,11 @@ class Welcome extends Application {
                 $burgers[$i]['instructions'] = "<br/>Instructions: <i>" . $burgers[$i]['instructions'] . "</i>";
             
             $burgers[$i]['total'] = $this->order->getBurgerTotal($burgers[$i]);
-             
+            $total += $burgers[$i]['total'];
         }
-        $this->data['burgers'] = $burgers;
-
         
+        $this->data['burgers'] = $burgers;
+        $this->data['total'] = $total;
         $this->data['pagebody'] = 'justone';
 	$this->render();
     }

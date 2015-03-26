@@ -31,5 +31,7 @@ and open the template in the editor.
         <sauce type="mustard"/>
         <instructions>Douse in maple syrup</instructions>
     </burger>
-    <special>Deliver the burgers to the porch. Ring the bell twice, then run across the street to recieve payment.</special>
+    <special>Deliver the burgers to the porch, covering it in a fuchsia scarf.
+        Ring the bell twice, then run to the other side of the street.
+        Once the door is answered, open a yellow umbrella and lower your cap to recieve payment.</special>
 </order>
