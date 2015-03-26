@@ -15,6 +15,7 @@ class Order extends CI_Model {
         parent::__construct();
     }
 
+    // Gets the order details regarding the burgers
     function getOrder($file)
     {
         $this->xml = simplexml_load_file(DATAPATH . $file . ".xml");
@@ -44,6 +45,7 @@ class Order extends CI_Model {
         return $order;
     }
     
+    // Gets the order details regarding delivery
     function getOrderInfo($file)
     {
         $order = [];
@@ -59,6 +61,7 @@ class Order extends CI_Model {
         return $order;
     }
     
+    // Gets the burger total
     function getBurgerTotal($burger)
     {
         $total = 0;

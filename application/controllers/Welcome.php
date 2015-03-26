@@ -39,7 +39,6 @@ class Welcome extends Application {
         }
         
         $this->data['orders'] = $xmlFiles;
-	// Present the list to choose from
 	$this->data['pagebody'] = 'homepage';
 	$this->render();
     }
@@ -51,8 +50,6 @@ class Welcome extends Application {
     function order($filename)
     {
 	// Build a receipt for the chosen order
-	
-	// Present the list to choose from
         $orderInfo = $this->order->getOrderInfo($filename);
         
         $this->data['order'] = ucfirst($orderInfo['order']);
@@ -62,6 +59,8 @@ class Welcome extends Application {
         $total = 0.00;
         
         $burgers = $this->order->getOrder($filename);
+        
+        // Grabs the appropriate names from the menu model.
         for ($i = 0; $i < count($burgers); $i++)
         {
             $burgers[$i]['count'] = $i + 1;
@@ -85,12 +84,14 @@ class Welcome extends Application {
 	$this->render();
     }
     
+    // Gets the patty name
     function getPatty($patty)
     {
         $patty = $this->menu->getPattyName($patty);
        return $patty;
     }
     
+    // Gets the cheese names
     function getCheeseList($topCheese, $bottomCheese)
     {
         $cheeseList = "<li>Cheese: ";
@@ -110,6 +111,7 @@ class Welcome extends Application {
        return $cheeseList;
     }
     
+    // Gets the topping name(s)
     function getToppingList($toppings)
     {
         $toppingList = "";
@@ -124,6 +126,7 @@ class Welcome extends Application {
        return $toppingList;
     }
     
+    // Gets the sauce name(s)
     function getSauceList($sauces)
     {
         $sauceList = "";
@@ -137,16 +140,4 @@ class Welcome extends Application {
         
        return $sauceList;
     }
-    
-    function getSpace($count)
-    {
-        $space = "";
-        while ($count > 0)
-        {
-            $space .= "&nbsp";
-            $count--;
-        }
-        return $space;
-    }
-
 }
