@@ -79,12 +79,12 @@ class Welcome extends Application {
             else
                 $burgers[$i]['name'] = " - \"" . $burgers[$i]['name'] . "\"";
             
-            $burgers[$i]['total'] = $this->order->getBurgerTotal($burgers[$i]);
+            $burgers[$i]['total'] = number_format($this->order->getBurgerTotal($burgers[$i]), 2);
             $total += $burgers[$i]['total'];
         }
         
         $this->data['burgers'] = $burgers;
-        $this->data['total'] = $total;
+        $this->data['total'] = number_format($total, 2);
         $this->data['pagebody'] = 'justone';
 	$this->render();
     }
